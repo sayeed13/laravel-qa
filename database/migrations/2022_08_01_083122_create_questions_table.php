@@ -22,8 +22,9 @@ return new class extends Migration
             $table->unsignedInteger('answers')->default(0);
             $table->integer('votes')->default(0);
             $table->unsignedInteger('best_ans')->nullable();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
