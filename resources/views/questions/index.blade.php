@@ -3,13 +3,26 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">{{ __('Questions') }}</div>
 
                 <div class="card-body">
                     @foreach ($questions as $question)
-                        <div class="media">
+                        <div class="media d-flex">
+                            <div class="d-flex flex-column counters">
+                                <div class="vote">
+                                    <strong>{{ $question->votes }}</strong>
+                                    {{ Str::plural('vote', $question->votes) }}
+                                </div>
+                                <div class="status {{ $question->status }}">
+                                    <strong>{{ $question->answers }}</strong>
+                                    {{ Str::plural('answer', $question->answers) }}
+                                </div>
+                                <div class="view mt-2">
+                                    {{ $question->views . " " . Str::plural('view', $question->views) }}
+                                </div>
+                            </div>
                             <div class="media-body">
                                 <h3 class="mt-0">
                                     <a href="{{$question->url}}">
